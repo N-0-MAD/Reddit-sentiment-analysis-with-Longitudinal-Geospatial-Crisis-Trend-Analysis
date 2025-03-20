@@ -7,22 +7,21 @@ import seaborn as sns
 import torch.nn as nn 
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-# Initialize the SentimentIntensityAnalyzer for sentiment analysis
 sia = SentimentIntensityAnalyzer()
 class DistilBERTClassifier(nn.Module):
     def __init__(self, num_classes):
         super(DistilBERTClassifier, self).__init__()
         self.distilbert = DistilBertModel.from_pretrained("distilbert-base-uncased")
         self.dropout = nn.Dropout(0.3)
-        self.fc = nn.Linear(768, num_classes)  # Match training architecture
+        self.fc = nn.Linear(768, num_classes) 
 
     def forward(self, input_ids, attention_mask):
         outputs = self.distilbert(input_ids=input_ids, attention_mask=attention_mask)
-        pooled_output = outputs.last_hidden_state[:, 0, :]  # CLS token representation
+        pooled_output = outputs.last_hidden_state[:, 0, :] 
         x = self.dropout(pooled_output)
         x = self.fc(x)
         return x
-num_classes = 3  # Ensure this matches the trained model
+num_classes = 3 
 model = DistilBERTClassifier(num_classes).to(device)
 # Load the pre-trained DistilBERT model and tokenizer for risk classification
 model_path = 'distilbert_risk_classifier_model_final.pth'
@@ -64,7 +63,6 @@ def classify_posts(posts_df):
     Returns:
     pd.DataFrame: The original DataFrame with additional columns 'Sentiment' and 'Risk_Level'.
     """
-    # Apply sentiment analysis
     posts_df["Sentiment"] = posts_df["Combined_Text"].apply(get_vader_sentiment)
 
     # Apply risk classification with the additional logic for positive sentiment
@@ -96,7 +94,6 @@ def plot_distributions(posts_df):
     plt.xticks(ticks=[0, 1, 2], labels=['Low Risk', 'Moderate Risk', 'High Risk'])
     plt.show()
 
-# Function to save the results to a CSV file
 def save_results(posts_df, file_name="classified_posts.csv"):
     """
     Save the classified posts DataFrame to a CSV file.
@@ -125,7 +122,6 @@ def process_and_visualize(posts_df, save_plots=False, save_file=False, file_name
     # Generate and display plots
     plot_distributions(classified_posts_df)
 
-    # Optionally save the classified posts to a CSV file
     if save_file:
         save_results(classified_posts_df, file_name)
 
