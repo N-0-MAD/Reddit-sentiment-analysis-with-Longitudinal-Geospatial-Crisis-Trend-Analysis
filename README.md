@@ -9,6 +9,8 @@ For sentiment classification, I have used **TextBlob** to categorize posts as po
 - **Preprocessing.py**: Script to clean the dataset and prepare for prediction
 - **classify_post.py**: Script to predict sentiment, risk level and provide plot for the same.
 - **crisis_geolocation.py**: Script which provides location heatmap and top 5 places.
+- **Sentiment_analysis__final_gsoc.ipynb**: Notebook containing detailed code of modeling
+  
 ## **Features**  
 - **Sentiment Analysis**: Classifies posts as **Positive, Negative, or Neutral** using TextBlob.  
 - **Crisis Risk Classification**: Uses a **fine-tuned DistilBERT model** to categorize posts into different risk levels.  
