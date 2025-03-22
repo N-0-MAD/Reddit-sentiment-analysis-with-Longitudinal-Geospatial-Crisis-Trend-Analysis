@@ -3,7 +3,7 @@
 ## **Overview**  
 A significant amount of research has been conducted on sentiment analysis of social media posts, particularly on platforms like Reddit and Twitter. Many state-of-the-art methods leverage deep learning techniques for enhanced sentiment classification.This project aims to analyze Reddit posts to classify sentiments and assess crisis-related discussions.  
 In this project, I have fine-tuned a **DistilBERT** model on a dataset of 1,825 Reddit posts, collected using the **Reddit API**. The sentiment analysis is performed on the combined title and content of each post to gain deeper insights.
-For sentiment classification, I have used **TextBlob** to categorize posts as positive, negative, or neutral. Additionally, the fine-tuned DistilBERT model is employed to classify the risk level of each post, helping to identify crisis-related discussions.
+For sentiment classification, I have used **TextBlob** to categorize posts as positive, negative, or neutral. Additionally, the fine-tuned DistilBERT model is employed to classify the risk level of each post, helping to identify crisis-related discussions.( **Accuracy of 0.76**)
 ### **Important Files:**
 - **reddit data.ipynb**: Code for fetching reddit data using API KEY
 - **Preprocessing.py**: Script to clean the dataset and prepare for prediction
