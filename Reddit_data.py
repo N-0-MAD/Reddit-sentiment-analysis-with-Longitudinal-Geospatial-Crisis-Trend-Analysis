@@ -4,6 +4,7 @@ import time
 import praw
 import nltk
 import emoji
+nltk.download("stopwords")
 from nltk.corpus import stopwords
 
 STOPWORDS = set(stopwords.words("english"))
@@ -35,7 +36,7 @@ def preprocess_data(reddit_df):
     return reddit_df
 
 def fetch_reddit_data():
-    nltk.download("stopwords")
+    
     STOPWORDS = set(stopwords.words("english"))
     
     reddit = praw.Reddit(
