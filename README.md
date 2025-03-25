@@ -5,8 +5,7 @@ A significant amount of research has been conducted on sentiment analysis of soc
 In this project, I have fine-tuned a **DistilBERT** model on a dataset of 1,825 Reddit posts, collected using the **Reddit API**. The sentiment analysis is performed on the combined title and content of each post to gain deeper insights.
 For sentiment classification, I have used **TextBlob** to categorize posts as positive, negative, or neutral. Additionally, the fine-tuned DistilBERT model is employed to classify the risk level of each post, helping to identify crisis-related discussions.( **Accuracy of 0.76**)
 ### **Important Files:**
-- **reddit data.ipynb**: Code for fetching reddit data using API KEY
-- **Preprocessing.py**: Script to clean the dataset and prepare for prediction
+- **Reddit_data.py**: Script for retrieving and storing filtered and cleaned social media posts ready for prediction
 - **classify_post.py**: Script to predict sentiment, risk level and provide plot for the same.
 - **crisis_geolocation.py**: Script which provides location heatmap and top 5 places.
 - **Sentiment_analysis__final_gsoc.ipynb**: Notebook containing detailed code of modeling
@@ -48,29 +47,15 @@ Although I have mentioned all the external dependencies used in this project, is
 If any dependency is not installed then you may install it using pip.
 ## **Usage**  
 
+Import this python script in your Jupyter Notebook and run "fetch_reddit_data()" function to fetch filtered reddit posts using API key. The cleaned dataset will be saved as "Cleaned_dataset.csv"
 Your dataset must have the following columns: columns=["ID", "Timestamp", "Title", "Content", "Upvotes", "Comments", "URL"]
-If you don't have the data, you can use Reddit API key to get the posts. 
-**The code snippet for fetching reddit posts is available in the file: reddit data.ipynb**
-Once you get the dataset, do the following procedure preferably in a Jupyter Notebook of same directory:
 
-### **1. Preprocess the Data**  
+### **1. Fetch the data and save the cleaned dataset**  
 ```Jupyter notebook
-import pandas as pd
-import re
-import emoji
-import nltk
-from nltk.corpus import stopwords
-import praw
-import time
-import torch
-import Preprocessing
-
-reddit_df = pd.read_csv("reddit_exp.csv")
-reddit_df["Title"] = reddit_df["Title"].astype(str)
-reddit_df["Content"] = reddit_df["Content"].astype(str)
-reddit_df = Preprocessing.preprocess_data(reddit_df)
+import Reddit_data
+reddit_df = Reddit_data.fetch_reddit_data()
 ```
-This script cleans the dataset and prepares it for sentiment analysis.[reddit_df]  
+This script cleans the dataset, prepares it for sentiment analysis [reddit_df] , and saves it as "Cleaned_dataset.csv"
 
 ### **2. Classify Sentiments & Risk Levels**  
 ```Jupyter Notebook
