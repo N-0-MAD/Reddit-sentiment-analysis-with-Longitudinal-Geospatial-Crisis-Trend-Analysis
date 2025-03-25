@@ -14,3 +14,4 @@ spacy==3.7.4
 folium==0.15.1
 geopy==2.4.1
 praw==7.8.1
+emoji==2.14.1
